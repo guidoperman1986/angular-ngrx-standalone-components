@@ -17,19 +17,19 @@ export class AuthService {
   }
 
   register(data: RegisterRequest): Observable<CurrentUser> {
-    const url = 'http://api.realworld.io/api/users';
+    const url = 'https://api.realworld.io/api/users';
 
     return this.http.post<AuthResponse>(url, data).pipe(map(this.getUser));
   }
 
   login(data: LoginRequest): Observable<CurrentUser> {
-    const url = 'http://api.realworld.io/api/users/login';
+    const url = 'https://api.realworld.io/api/users/login';
 
     return this.http.post<AuthResponse>(url, data).pipe(map(this.getUser));
   }
 
   getCurrentUser(): Observable<CurrentUser> {
-    const url = 'http://api.realworld.io/api/user';
+    const url = 'https://api.realworld.io/api/user';
 
     return this.http.get<AuthResponse>(url).pipe(map(this.getUser));
   }

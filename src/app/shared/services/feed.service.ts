@@ -14,7 +14,7 @@ export class FeedService {
 
   getFeed({ url, limit, offset, tag }: FeedRequest): Observable<FeedResponse> {
     let fullUrl =
-      'http://api.realworld.io/api' + url + `?limit=${limit}&offset=${offset}`;
+      'https://api.realworld.io/api' + url + `?limit=${limit}&offset=${offset}`;
 
     tag?.length! > 0 && (fullUrl += `&tag=${tag}`);
 

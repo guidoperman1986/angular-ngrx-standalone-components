@@ -10,7 +10,7 @@ export class PopularTagsService {
   http = inject(HttpClient);
 
   getPopularTags(): Observable<PopularTagType[]> {
-    const url = 'http://api.realworld.io/api/tags';
+    const url = 'https://api.realworld.io/api/tags';
 
     return this.http
       .get<{ tags: PopularTagType[] }>(url)
