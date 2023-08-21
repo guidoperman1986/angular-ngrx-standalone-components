@@ -2,6 +2,7 @@ import { createFeature, createReducer, on } from '@ngrx/store';
 import { AuthState } from '../interfaces/auth-state.interface';
 import { authActions } from './auth.actions';
 import { CurrentUser } from '../../shared/types/current-user.interface';
+import { routerNavigatedAction } from '@ngrx/router-store';
 
 const initialState: AuthState = {
   isSubmitting: false,
@@ -22,7 +23,7 @@ const authFeature = createFeature({
     })),
     on(authActions.registerSuccess, (state, action) => ({
       ...state,
-      isSubmitting: true,
+      isSubmitting: false,
       isLoading: false,
       currentUser: action.currentUser,
     })),
@@ -31,7 +32,42 @@ const authFeature = createFeature({
       isSubmitting: false,
       isLoading: false,
       validationErrors: action.errors,
-    }))
+    })),
+
+    on(authActions.login, (state) => ({
+      ...state,
+      isSubmitting: true,
+      isLoading: true,
+      validationErrors: null,
+    })),
+    on(authActions.loginSuccess, (state, action) => ({
+      ...state,
+      isSubmitting: false,
+      isLoading: false,
+      currentUser: action.currentUser,
+    })),
+    on(authActions.loginFailure, (state, action) => ({
+      ...state,
+      isSubmitting: false,
+      isLoading: false,
+      validationErrors: action.errors,
+    })),
+
+    on(authActions.getCurrentUser, (state) => ({
+      ...state,
+      isLoading: true,
+    })),
+    on(authActions.getCurrentUserSuccess, (state, action) => ({
+      ...state,
+      isLoading: false,
+      currentUser: action.currentUser,
+    })),
+    on(authActions.getCurrentUserFailure, (state, action) => ({
+      ...state,
+      isLoading: false,
+      currentUser: null,
+    })),
+    on(routerNavigatedAction, (state) => ({ ...state, validationErrors: null }))
   ),
 });
 

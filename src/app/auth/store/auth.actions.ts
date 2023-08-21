@@ -2,13 +2,24 @@ import { createActionGroup, emptyProps, props } from '@ngrx/store';
 import { CurrentUser } from 'src/app/shared/types/current-user.interface';
 import { RegisterRequest } from '../interfaces/register.interface';
 import { BackendErrors } from 'src/app/shared/types/backend-errors.interface';
+import { LoginRequest } from '../interfaces/login.interface';
 
 export const authActions = createActionGroup({
   source: 'auth',
   events: {
     Register: props<{ request: RegisterRequest }>(),
     'Register success': props<{ currentUser: CurrentUser }>(),
-    'Register failure': props<{errors: BackendErrors}>(),
+    'Register failure': props<{ errors: BackendErrors }>(),
+
+    Login: props<{ request: LoginRequest }>(),
+    'Login success': props<{ currentUser: CurrentUser }>(),
+    'Login failure': props<{ errors: BackendErrors }>(),
+
+    'Get current user': emptyProps(),
+    'Get current user success': props<{ currentUser: CurrentUser }>(),
+    'Get current user failure': emptyProps(),
+
+
   },
 });
 

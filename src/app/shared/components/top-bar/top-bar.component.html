@@ -1,0 +1,46 @@
+<ng-container *ngIf="data$ | async as data">
+  <nav class="navbar navbar-light">
+    <div class="container">
+      <a routerlink="/" class="navbar-brand">medium</a>
+      <ul class="nav navbar-nav pull-xs-right" style="margin: 5px auto;">
+        <li class="nav-item">
+          <a routerLink="'/'">Home</a>
+        </li>
+
+        <ng-container *ngIf="data$ | async as data">
+          <li class="nav-item">
+            <a routerLink="'/articles/new'"
+              ><i class="ion-compose"></i>
+              &nbsp; New Post
+            </a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="'/settings'"
+              ><i class="ion-gear-a"></i>
+              &nbsp; Settings
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              style="margin-top: -5px;"
+              [routerLink]="['/profiles', 'data.currentUser.username']"
+              class="nav-link"
+              ><img class="user-pic" [src]="data.currentUser?.image" alt="" />
+              &nbsp; {{ data.currentUser?.username }}
+            </a>
+          </li>
+        </ng-container>
+
+        <ng-container *ngIf="data.currentUser === null">
+          <li class="nav-item">
+            <a routerLink="'/login'">Sign In</a>
+          </li>
+          
+          <li class="nav-item">
+            <a routerLink="'/register'">Sign Up</a>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
+  </nav>
+</ng-container>
