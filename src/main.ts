@@ -5,7 +5,7 @@ import {
 } from '@angular/common/http';
 import { importProvidersFrom, isDevMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideRouterStore, routerReducer } from '@ngrx/router-store';
 import { provideState, provideStore } from '@ngrx/store';
@@ -15,6 +15,7 @@ import { AppComponent } from './app/app.component';
 import * as authEffects from './app/auth/store/auth.effects';
 import * as feedEffects from './app/shared/feed-store/feed.effects';
 import * as tagsEffects from './app/shared/store/popular-tags.effects';
+import * as articleEffects from './app/article/store/article.effects';
 import { authFeatureKey, authReducer } from './app/auth/store/auth.reducer';
 import { authInterceptor } from './app/shared/services/auth.interceptor';
 import {
@@ -25,10 +26,14 @@ import {
   popularTagsFeatureKey,
   popularTagsReducer,
 } from './app/shared/store/popular-tags.reducer';
+import {
+  articleFeatureKey,
+  articleReducer,
+} from './app/article/store/article.reducer';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideRouter(appRoutes),
+    provideRouter(appRoutes, withComponentInputBinding()),
     provideHttpClient(withInterceptors([authInterceptor])),
     provideStore({ router: routerReducer }),
     provideStoreDevtools({
@@ -41,10 +46,11 @@ bootstrapApplication(AppComponent, {
     provideState(authFeatureKey, authReducer),
     provideState(feedFeatureKey, feedReducer),
     provideState(popularTagsFeatureKey, popularTagsReducer),
+    provideState(articleFeatureKey, articleReducer),
     provideEffects(authEffects),
     provideEffects(feedEffects),
     provideEffects(tagsEffects),
-    provideRouterStore(),
+    provideEffects(articleEffects),
     provideRouterStore(),
   ],
 });

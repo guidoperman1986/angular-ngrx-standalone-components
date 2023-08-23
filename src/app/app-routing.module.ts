@@ -1,6 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { GlobalFeedComponent } from './global-feed/components/global-feed/global-feed.component';
+import { Routes } from '@angular/router';
 
 export const appRoutes: Routes = [
   {
@@ -32,6 +30,13 @@ export const appRoutes: Routes = [
     loadChildren: () =>
       import('src/app/tag-feed/tag-feed.routes').then(
         (m) => m.TagFeedRoutes
+      ),
+  },
+  {
+    path: 'article/:slug',
+    loadChildren: () =>
+      import('src/app/article/article.routes').then(
+        (m) => m.ArticleRoutes
       ),
   },
 ];
