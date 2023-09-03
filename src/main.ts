@@ -46,11 +46,11 @@ bootstrapApplication(AppComponent, {
     provideState(authFeatureKey, authReducer),
     provideState(feedFeatureKey, feedReducer),
     provideState(popularTagsFeatureKey, popularTagsReducer),
-    provideState(articleFeatureKey, articleReducer),
+    // provideState(articleFeatureKey, articleReducer),
     provideEffects(authEffects),
     provideEffects(feedEffects),
     provideEffects(tagsEffects),
-    provideEffects(articleEffects),
+    // provideEffects(articleEffects),
     provideRouterStore(),
   ],
 });

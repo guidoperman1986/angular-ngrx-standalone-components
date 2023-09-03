@@ -33,12 +33,19 @@ export const appRoutes: Routes = [
       ),
   },
   {
+    path: 'articles/new',
+    loadChildren: () =>
+      import('src/app/create-article/create-article.routes').then(
+        (m) => m.CreateArticleRoutes
+      ),
+  },
+  {
     path: 'article/:slug',
     loadChildren: () =>
       import('src/app/article/article.routes').then(
         (m) => m.ArticleRoutes
       ),
-  },
+  },  
 ];
 
 /* @NgModule({

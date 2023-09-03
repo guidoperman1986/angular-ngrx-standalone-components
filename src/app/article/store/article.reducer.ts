@@ -9,7 +9,7 @@ const initialState: ArticleState = {
   data: null,
 };
 
-export const feedFeature = createFeature({
+export const articleFeature = createFeature({
   name: 'article',
   reducer: createReducer(
     initialState,
@@ -33,4 +33,4 @@ export const {
   selectIsLoading,
   selectError,
   selectData: selectArticleData,
-} = feedFeature;
+} = articleFeature;

@@ -16,4 +16,10 @@ export class ArticleService {
       .get<{ article: ArticleInterface }>(url)
       .pipe(map(({ article }) => article));
   }
+
+  deleteArticle(slug: string) {
+    const url = `https://api.realworld.io/api/articles/${slug}`;
+
+    return this.http.delete(url);
+  }
 }
