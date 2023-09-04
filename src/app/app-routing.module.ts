@@ -40,6 +40,13 @@ export const appRoutes: Routes = [
       ),
   },
   {
+    path: 'articles/:slug/edit',
+    loadChildren: () =>
+      import('src/app/edit-article/edit-article.routes').then(
+        (m) => m.EditArticleRoutes
+      ),
+  },  
+  {
     path: 'article/:slug',
     loadChildren: () =>
       import('src/app/article/article.routes').then(
