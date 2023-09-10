@@ -5,6 +5,7 @@ import { Observable, map } from 'rxjs';
 import { CurrentUser } from 'src/app/shared/types/current-user.interface';
 import { AuthResponse } from '../interfaces/auth-response.interface';
 import { LoginRequest } from '../interfaces/login.interface';
+import { CurrentUserRequest } from 'src/app/shared/types/current-user-request.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -32,5 +33,15 @@ export class AuthService {
     const url = 'https://api.realworld.io/api/user';
 
     return this.http.get<AuthResponse>(url).pipe(map(this.getUser));
+  }
+
+  updateCurrentUser(
+    currentUserRequest: CurrentUserRequest
+  ): Observable<CurrentUser> {
+    const url = 'https://api.realworld.io/api/user';
+
+    return this.http
+      .put<AuthResponse>(url, currentUserRequest)
+      .pipe(map(this.getUser));
   }
 }

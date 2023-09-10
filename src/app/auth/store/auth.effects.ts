@@ -110,3 +110,43 @@ export const getCurrentUserEffect = createEffect(
   },
   { functional: true }
 );
+
+export const updateCurrentUserEffect = createEffect(
+  (actions$ = inject(Actions), authService = inject(AuthService)) => {
+    return actions$.pipe(
+      ofType(authActions.updateCurrentUser),
+      switchMap(({ currentUserRequest }) => {
+        return authService.updateCurrentUser(currentUserRequest).pipe(
+          map((currentUser: CurrentUser) => {
+            return authActions.updateCurrentUserSuccess({ currentUser });
+          }),
+          catchError((errors: HttpErrorResponse) =>
+            of(
+              authActions.updateCurrentUserFailure({
+                errors: errors.error.errors,
+              })
+            )
+          )
+        );
+      })
+    );
+  },
+  { functional: true }
+);
+
+export const logoutEffect = createEffect(
+  (
+    actions$ = inject(Actions),
+    router = inject(Router),
+    persistanceService = inject(PersistanceService)
+  ) => {
+    return actions$.pipe(
+      ofType(authActions.logout),
+      tap(() => {
+        persistanceService.set('accessToken', '');
+        router.navigateByUrl('/');
+      })
+    );
+  },
+  { functional: true, dispatch: false }
+);

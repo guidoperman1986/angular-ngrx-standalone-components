@@ -53,6 +53,13 @@ export const appRoutes: Routes = [
         (m) => m.ArticleRoutes
       ),
   },  
+  {
+    path: 'settings',
+    loadChildren: () =>
+      import('src/app/settings/settings.routes').then(
+        (m) => m.SettingsRoutes
+      ),
+  },  
 ];
 
 /* @NgModule({
