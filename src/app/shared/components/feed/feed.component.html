@@ -16,13 +16,19 @@
           {{ article.author.username }}
         </a>
         <div class="date">{{ article.createdAt }}</div>
-        <div class="pull-xs-right">ADD TO FAVORITES</div>
+        <div class="pull-xs-right">
+          <app-add-to-favorites
+            [isFavorited]="article.favorited"
+            [articleSlug]="article.slug"
+            [favoritesCount]="article.favoritesCount"
+          ></app-add-to-favorites>
+        </div>
       </div>
       <a [routerLink]="['/article', article.slug]" class="preview-link">
         <h1>{{ article?.title }}</h1>
         <p>{{ article.description }}</p>
         <span>Read more...</span>
-        
+
         <app-tag-list [tags]="article.tagList!"></app-tag-list>
       </a>
     </div>

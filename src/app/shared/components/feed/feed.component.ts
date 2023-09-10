@@ -21,6 +21,7 @@ import { LoadingComponent } from '../loading/loading.component';
 import { PaginationComponent } from '../pagination/pagination.component';
 import { TagListComponent } from '../tag-list/tag-list.component';
 import { FeedRequest } from '../../types/get-reed-response.interface';
+import { AddToFavoritesComponent } from '../add-to-favorites/add-to-favorites.component';
 
 @Component({
   selector: 'app-feed',
@@ -32,6 +33,7 @@ import { FeedRequest } from '../../types/get-reed-response.interface';
     LoadingComponent,
     PaginationComponent,
     TagListComponent,
+    AddToFavoritesComponent
   ],
   templateUrl: './feed.component.html',
   styleUrls: ['./feed.component.scss'],

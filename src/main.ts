@@ -15,6 +15,7 @@ import { AppComponent } from './app/app.component';
 import * as authEffects from './app/auth/store/auth.effects';
 import * as feedEffects from './app/shared/feed-store/feed.effects';
 import * as tagsEffects from './app/shared/store/popular-tags.effects';
+import * as addToFavoritesEffects from './app/shared/components/add-to-favorites/store/effects';
 import * as articleEffects from './app/article/store/article.effects';
 import { authFeatureKey, authReducer } from './app/auth/store/auth.reducer';
 import { authInterceptor } from './app/shared/services/auth.interceptor';
@@ -50,6 +51,7 @@ bootstrapApplication(AppComponent, {
     provideEffects(authEffects),
     provideEffects(feedEffects),
     provideEffects(tagsEffects),
+    provideEffects(addToFavoritesEffects),
     // provideEffects(articleEffects),
     provideRouterStore(),
   ],
