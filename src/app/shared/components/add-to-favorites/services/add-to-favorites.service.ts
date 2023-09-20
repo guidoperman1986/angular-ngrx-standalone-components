@@ -13,8 +13,6 @@ export class AddToFavoritesService {
   addToFavorites(slug: string): Observable<ArticleInterface> {
     const url = this.getUrl(slug);
 
-    console.log(url);
-
     return this.http
       .post<ArticleResponseInterface>(url, {})
       .pipe(map(this.getArticle));

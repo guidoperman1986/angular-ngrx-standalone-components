@@ -40,7 +40,6 @@ export class UserProfileComponent implements OnInit {
       filter((userProfile): userProfile is UserProfile => Boolean(userProfile))
     ),
   }).pipe(
-    tap((data) => console.log(data)),
     map(({ currentUser, userProfile }) => {
       return currentUser.username === userProfile.username;
     })
@@ -52,6 +51,8 @@ export class UserProfileComponent implements OnInit {
     userProfile: this.store.select(selectUserProfileData),
     isCurrentUserProfile: this.isCurrentUserProfile$,
   });
+
+  isLoading = this.store.selectSignal(selectIsLoading)
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {

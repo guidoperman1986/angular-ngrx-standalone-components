@@ -14,6 +14,5 @@ export class AppComponent {
   title = 'medium-clone';
 
   constructor(private authService: AuthService) {
-    // this.authService.getCurrentUser().subscribe((data)=>console.log(data))
   }
 }
