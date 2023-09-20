@@ -28,9 +28,7 @@ export const appRoutes: Routes = [
   {
     path: 'tags/:slug',
     loadChildren: () =>
-      import('src/app/tag-feed/tag-feed.routes').then(
-        (m) => m.TagFeedRoutes
-      ),
+      import('src/app/tag-feed/tag-feed.routes').then((m) => m.TagFeedRoutes),
   },
   {
     path: 'articles/new',
@@ -45,21 +43,27 @@ export const appRoutes: Routes = [
       import('src/app/edit-article/edit-article.routes').then(
         (m) => m.EditArticleRoutes
       ),
-  },  
+  },
   {
     path: 'article/:slug',
     loadChildren: () =>
-      import('src/app/article/article.routes').then(
-        (m) => m.ArticleRoutes
-      ),
-  },  
+      import('src/app/article/article.routes').then((m) => m.ArticleRoutes),
+  },
+  {
+    path: 'profiles/:slug',
+    loadChildren: () =>
+      import('src/app/user-profile/user-profile.routes').then((m) => m.routes),
+  },
+  {
+    path: 'profiles/:slug/favorites',
+    loadChildren: () =>
+      import('src/app/user-profile/user-profile.routes').then((m) => m.routes),
+  },
   {
     path: 'settings',
     loadChildren: () =>
-      import('src/app/settings/settings.routes').then(
-        (m) => m.SettingsRoutes
-      ),
-  },  
+      import('src/app/settings/settings.routes').then((m) => m.SettingsRoutes),
+  },
 ];
 
 /* @NgModule({
